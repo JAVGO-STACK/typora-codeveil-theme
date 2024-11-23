@@ -34,7 +34,7 @@
 
 ### 贡献
 
-这是 CodeVeil 的第一个版本。如果你有想法或改进，欢迎 **Fork** 项目并给它一个 **Star** ⭐️。有了绝妙的建议？打开一个 **Issue** 或提交一个 **Pull Request**。让我们一起让 Markdown 变得更加美丽！
+这是 CodeVeil 的第一个版本。如果你有想法或改进，欢迎 **Fork** 项目并给它一个 **Star** ⭐️。有了绝妙的建议？打开一个 **[Issue](https://github.com/JAVGO-STACK/typora-codeveil-theme/issues/new)** 或提交一个 **[Pull Request](https://github.com/JAVGO-STACK/typora-codeveil-theme/pulls)**。让我们一起让 Markdown 变得更加美丽！
 
 ## 声明
 
