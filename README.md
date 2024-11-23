@@ -12,17 +12,25 @@
 - **增强的偏好设置**：借鉴 Spring 主题的元素，使 Typora 的偏好设置更加直观且富有视觉吸引力。
 - **美观的 Markdown 样式**：每个常见的 Markdown 元素都经过精心设计，提升可读性和美感。
 
-![](./codeveil.png)
+![](images/codeveil.png)
 
 ### 安装
 
-1. **下载** 项目的压缩包，从 [GitHub](https://github.com/your-repo-link)。
+1. **[下载](https://github.com/JAVGO-STACK/typora-codeveil-theme/releases/tag/v1.0.0)** 项目的压缩包，从 [GitHub](https://github.com/JAVGO-STACK/typora-codeveil-theme/releases/tag/v1.0.0)。
+
+![releases](images/download.png)
+
 2. **复制** `codeveil-light.css` 文件和 `codeveil` 文件夹到你的 Typora 主题库。
+
+![move css file](images/move-file.png)
+
 3. **启动** 或重启 Typora，并从主题菜单中选择 **CodeVeil Light**。
+
+![change theme](images/change-theme.png)
 
 ### 预览
 
-![CodeVeil 主题预览](./preview.gif)
+![CodeVeil 主题预览](images/preview.gif)
 
 ### 贡献
 
