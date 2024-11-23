@@ -1,0 +1,1372 @@
+/* 
+ * @name: CodeVeil Theme
+ * @description: A dark theme for Hexo.
+ * @version: 1.0.0
+ * @author: CodeVeil
+ * @license: MIT
+ * @date: 2021-09-01
+ * @reference: Vercel、Spring Theme
+ */
+
+/* ======================================================================= Fonts CSS ======================================================================= */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./vercel/Geist[wght].woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GeistMono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./vercel/GeistMono[wght].woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./vercel/InterVariable-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGWWenKai";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./vercel/LXGWWenKai-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "LXGWWenKaiMono";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./vercel/LXGWWenKaiMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url("./vercel/iconfont.woff2") format("woff2");
+}
+
+/* =====================================================================  VARIABLES ======================================================================= */
+:root {
+  /* 基础颜色 */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --v-white-100: #ffffff;
+  --v-white-200: #fafafa;
+  --v-gray-1000: #171717;
+  --v-gray-900: #666666;
+  --v-gray-800: #7d7d7d;
+  --v-gray-700: #8f8f8f;
+  --v-gray-600: #a8a8a8;
+  --v-gray-500: #c9c9c9;
+  --v-gray-400: #eaeaea;
+  --v-purple-700: #8e4ec6;
+  --v-purple-900: #7820bc;
+  --v-red-700: #e5484d;
+  --v-red-900: #cb2a2f;
+  --v-amber-700: #f5b047;
+  --v-amber-900: #a35200;
+  --v-blue-400: #85d7ff;
+  --v-blue-500: #3ab7ff;
+  --v-blue-600: #52aeff;
+  --v-blue-700: #0072f5;
+  --v-blue-900: #0068d6;
+  --v-background: #282c34;
+
+  /* 字体族 */
+  --font-body: 'Roboto', sans-serif;
+  --font-heading: 'Roboto', sans-serif;
+
+  /* 圆角 */
+  --border-radius: 16px;
+
+  /* 动画时长 */
+  --transition-duration: 0.3s;
+
+  --monospace: "GeistMono", "LXGWWenKaiMono";
+
+  /* 灰色调 */
+  --color-light-gray: #f9f9f9;
+  --color-medium-gray: #e0e0e0;
+  --color-dark-gray: #6c757d;
+  --color-border: #dee2e6;
+  --color-gray-900: #333333;
+
+  /* 蓝色调 */
+  --color-blue-light: #e6f7ff;
+  --color-blue-medium: #3490dc;
+  --color-blue-hover: #1c7ed6;
+  --color-blue-700: #2c5282;
+  --color-blue-900: #2a4365;
+
+  /* 紫色调 */
+  --color-purple-700: #6b46c1;
+  --color-purple-900: #44337a;
+
+  /* 红色调 */
+  --color-red-700: #c53030;
+  --color-red-900: #742a2a;
+
+  /* 琥珀色调 */
+  --color-amber-700: #d69e2e;
+  --color-amber-900: #975a16;
+
+  /* 绿色调 */
+  --color-green-700: #38a169;
+  --color-green-900: #22543d;
+
+  /* 图标颜色 */
+  --color-icon: var(--color-blue-medium);
+  --color-icon-hover: var(--color-blue-hover);
+
+  /* 阴影颜色 */
+  --color-shadow-light: rgba(0, 0, 0, 0.15);
+  --color-shadow-medium: rgba(0, 0, 0, 0.2);
+
+  /* 成功、警告、错误颜色（可选，根据需要） */
+  --color-success: #28a745;
+  --color-success-hover: #218838;
+  --color-warning: #ffc107;
+  --color-warning-hover: #e0a800;
+  --color-error: #dc3545;
+  --color-error-hover: #c82333;
+
+  /* 动态边框颜色 */
+  --color-dynamic-border: var(--color-blue-hover);
+
+  /* 表头色 */
+  --color-header-bg: #edf3f8;
+  --color-header-hover-bg: #dbeafe;
+
+  /* 标题颜色 */
+  --color-heading: var(--color-gray-900);
+  --color-heading-hover: var(--color-blue-hover);
+
+  /* 其他变量 */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-heavy: 0 6px 15px rgba(0, 0, 0, 0.18);
+}
+
+/* ======================================================================= Print CSS ======================================================================= */
+@media print {
+  html {
+    font-size: 14px;
+  }
+
+  pre {
+    page-break-inside: avoid;
+    word-wrap: break-word;
+  }
+
+  blockquote p {
+    margin-left: 30px;
+  }
+}
+
+/* ======================================================================= Theme CSS ======================================================================= */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: linear-gradient(to bottom, #90CAF9, #BBDEFB, #E3F2FD, #FFFFFF);
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
+
+  color: var(--v-gray-1000);
+  line-height: 1.6;
+  font-family: var(--font-body);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* ======================================================================= Content CSS ======================================================================= */
+#write {
+  margin: 2rem auto;
+  padding: 30px;
+  max-width: 1024px;
+  font-family: "Geist", "LXGWWenKai";
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: var(--v-white-100);
+}
+
+@media only screen and (min-width: 1400px) {
+  #write {
+    max-width: 1200px;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  #write {
+    max-width: 1400px;
+  }
+}
+
+/* ======================================================================= Yaml CSS ======================================================================= */
+pre.md-meta-block {
+  margin: 20px 0px;
+  padding: 10px;
+  font-family: "Geist", "LXGWWenKai";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--v-gray-900);
+  background-color: var(--v-white-100);
+  border-bottom: 1px dashed var(--v-gray-900);
+}
+
+/* ======================================================================= HEADING CSS ======================================================================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 2.2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  line-height: 1.6rem;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  color: var(--color-gray-700);
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  color: var(--color-heading-hover);
+}
+
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h5::after,
+h6::after {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  height: 2px;
+  background-color: var(--color-blue-medium);
+  width: 50px;
+  transition: width 0.3s ease;
+}
+
+h1:hover::after,
+h2:hover::after,
+h3:hover::after,
+h4:hover::after,
+h5:hover::after,
+h6:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.7rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.3rem;
+  }
+
+  h3 {
+    font-size: 1.625rem;
+    line-height: 2rem;
+  }
+
+  h4 {
+    font-size: 1.375rem;
+    line-height: 1.7rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  h6 {
+    font-size: 0.875rem;
+    line-height: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 2.1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.9rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.6rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+
+  h6 {
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+  }
+}
+
+/* ======================================================================= BLOCKQUOTE CSS ======================================================================= */
+blockquote {
+  position: relative;
+  padding: 1rem 1rem 1rem 0.75rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--color-blue-medium);
+  background-color: #edf3f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: var(--color-gray-900);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+blockquote:hover {
+  background-color: var(--color-blue-light);
+  border-left-color: var(--color-blue-hover);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+#write blockquote::before {
+  content: "❝";
+  position: absolute;
+  top: 10px;
+  left: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--color-blue-medium);
+  transition: color 0.3s ease;
+}
+
+blockquote:hover::before {
+  color: var(--color-blue-hover);
+}
+
+#write blockquote>p.md-end-block {
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-gray-900);
+}
+
+/* ======================================================================= ALERT CSS ======================================================================= */
+.md-alert {
+  position: relative;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--color-blue-medium);
+  background-color: var(--color-light-gray);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--color-dark-gray);
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.md-alert:hover {
+  background-color: var(--color-blue-light);
+  border-left-color: var(--color-blue-hover);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.md-alert::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-family: "iconfont" !important;
+  font-size: 1.5rem;
+  color: var(--color-icon);
+  transition: color 0.3s ease;
+}
+
+.md-alert.md-alert-important {
+  border-left-color: var(--color-purple-700);
+  color: var(--color-purple-900);
+}
+
+.md-alert.md-alert-important::before {
+  content: "\e643";
+  color: var(--color-purple-700);
+}
+
+.md-alert.md-alert-caution {
+  border-left-color: var(--color-red-700);
+  color: var(--color-red-900);
+}
+
+.md-alert.md-alert-caution::before {
+  content: "\e62c";
+  color: var(--color-red-700);
+}
+
+.md-alert.md-alert-warning {
+  border-left-color: var(--color-amber-700);
+  color: var(--color-amber-900);
+}
+
+.md-alert.md-alert-warning::before {
+  content: "\e612";
+  color: var(--color-amber-700);
+}
+
+.md-alert.md-alert-tip {
+  border-left-color: var(--color-green-700);
+  color: var(--color-green-900);
+}
+
+.md-alert.md-alert-tip::before {
+  content: "\e600";
+  color: var(--color-green-700);
+}
+
+.md-alert.md-alert-note {
+  border-left-color: var(--color-blue-700);
+  color: var(--color-blue-900);
+}
+
+.md-alert.md-alert-note::before {
+  content: "\e63c";
+  color: var(--color-blue-700);
+}
+
+.md-alert:hover::before {
+  color: var(--color-blue-hover);
+}
+
+/* ======================================================================= COMMENT CSS ======================================================================= */
+.md-comment {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: var(--color-light-gray);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: var(--color-dark-gray);
+  font-family: 'GeistMono', 'LXGWWenKai', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.md-comment:hover {
+  background-color: var(--color-blue-light);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  color: var(--color-blue-hover);
+}
+
+/* =====================================================================  Link CSS ======================================================================= */
+#write a {
+  font-weight: 500;
+  color: var(--v-blue-700);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+#write a:hover {
+  background-image: linear-gradient(var(--v-blue-700), var(--v-blue-700));
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+}
+
+/* KBD */
+kbd {
+  font-family: "GeistMono", "LXGWWenKai";
+  padding: 2px 8px;
+  vertical-align: baseline;
+  font-size: 0.9rem;
+  color: var(--v-white-100);
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  background-color: var(--v-gray-800);
+}
+
+/* HIGHTLIGHT */
+#write mark {
+  background-color: var(--v-blue-600);
+  border-radius: 3px;
+}
+
+/* HORIZON */
+hr {
+  margin: 10px 0px;
+  border: none;
+  border-bottom: 1px solid var(--v-gray-500);
+}
+
+/* FOOTNOTE */
+sup.md-footnote {
+  font-family: "GeistMono", "LXGWWenKai";
+  color: var(--v-gray-800);
+}
+
+.md-def-name {
+  padding: 0px 8px;
+  font-family: "GeistMono";
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.md-def-footnote .md-def-name::before {
+  content: "[";
+}
+
+.md-def-name::after {
+  right: -17px;
+}
+
+.md-def-content {
+  font-size: 1rem;
+  color: var(--v-gray-1000);
+}
+
+/* FORMULA */
+.md-inline-math {
+  color: var(--v-blue-800);
+}
+
+/* =====================================================================  Inline Code CSS ======================================================================= */
+#write code {
+  padding: 0.2rem 0.4rem;
+  font-family: 'GeistMono', 'LXGWWenKai', monospace;
+  font-size: 0.85rem;
+  background-color: var(--color-dark-gray);
+  border-radius: 4px;
+  color: var(--color-white);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+#write code:hover {
+  background-color: var(--color-blue-medium);
+  color: var(--color-white);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#write code:hover::after {
+  width: 100%;
+}
+
+/* ======================================================================= Unordered List CSS =========================================================================== */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+#write ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+#write ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-blue-medium);
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#write ul li:hover::before {
+  transform: translateY(-50%) scale(1.2);
+  color: var(--color-blue-hover);
+}
+
+ul ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+ul ul li::before {
+  content: '◦';
+  font-size: 1rem;
+}
+
+ul ul ul li::before {
+  content: '▪';
+  font-size: 0.8rem;
+}
+
+#write ul li.md-task-list-item::before {
+  content: '';
+  background-color: transparent;
+}
+
+#write ul li.md-task-list-item {
+  padding-left: 10px;
+}
+
+/* ======================================================================= Ordered List CSS =========================================================================== */
+ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+  counter-reset: li;
+}
+
+#write ol li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-black);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+#write ol li::before {
+  content: counter(li) ".";
+  counter-increment: li;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-blue-medium);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#write ol li:hover::before {
+  transform: translateY(-50%) scale(1.2);
+  color: var(--color-blue-hover);
+}
+
+ol ol {
+  counter-reset: alpha;
+  list-style: none;
+  padding-left: 1rem;
+}
+
+ol ol li::before {
+  content: counter(alpha, lower-alpha) ".";
+  counter-increment: alpha;
+}
+
+ol ol ol {
+  counter-reset: roman;
+  list-style: none;
+  padding-left: 0.5rem;
+}
+
+ol ol ol li::before {
+  content: counter(roman, lower-roman) ".";
+  counter-increment: roman;
+}
+
+/* ======================================================================= Image CSS =========================================================================== */
+img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--v-gray-500);
+  border-radius: 8px;
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease; */
+}
+
+img:hover {
+  /* transform: translateY(-5px); */
+  border-color: var(--color-blue-hover);
+}
+
+/* =======================================================================  Table CSS =========================================================================== */
+#write table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--color-shadow-light);
+  background-color: var(--color-white);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#write table:hover {
+  box-shadow: 0 6px 20px var(--color-shadow-medium);
+  transform: translateY(-2px);
+}
+
+thead {
+  background-color: var(--color-header-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px var(--color-shadow-light);
+}
+
+th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-black);
+  border-bottom: 2px solid var(--color-medium-gray);
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--color-blue-medium);
+  transition: width 0.3s ease;
+}
+
+th:hover::after {
+  width: 100%;
+}
+
+th:hover {
+  background-color: var(--color-header-hover-bg);
+  color: var(--color-blue-medium);
+}
+
+td {
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-black);
+  border-bottom: 1px solid var(--color-medium-gray);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr {
+  background-color: var(--color-white);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-light-gray);
+}
+
+tbody tr:hover {
+  background-color: var(--color-blue-light);
+  color: var(--color-blue-hover);
+  transform: translateY(-2px);
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--color-shadow-light);
+}
+
+@media (max-width: 768px) {
+  #write table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px var(--color-shadow-light);
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: var(--color-white);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  tbody tr:hover {
+    box-shadow: 0 4px 16px var(--color-shadow-medium);
+    transform: translateY(-4px);
+    background-color: var(--color-blue-light);
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    position: relative;
+    border-bottom: none;
+    background-color: var(--color-white);
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--color-dark-gray);
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  tbody td:last-child {
+    border-bottom: none;
+  }
+}
+
+#write table::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+#write table::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#write table::-webkit-scrollbar-thumb {
+  background-color: var(--color-medium-gray);
+  border-radius: 4px;
+}
+
+#write table {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-medium-gray) transparent;
+}
+
+
+/* =======================================================================  TOC CSS =========================================================================== */
+#write .md-toc {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--color-white);
+  border: 1px solid var(--v-gray-500);
+  border-radius: 8px;
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); */
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+}
+
+#write .md-toc::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 1px;
+  height: 100%;
+  border-left: 1px dashed var(--v-gray-500);
+}
+
+#write .md-toc-h1 a.md-toc-inner {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-blue-medium);
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#write .md-toc-h1 a.md-toc-inner:hover {
+  background-color: var(--color-blue-light);
+  color: var(--color-blue-hover);
+}
+
+#write .md-toc-h2 a.md-toc-inner {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-dark-gray);
+  position: relative;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#write .md-toc-h2 a.md-toc-inner:hover {
+  background-color: var(--color-blue-light);
+  color: var(--color-blue-hover);
+}
+
+#write .md-toc-h3 a.md-toc-inner,
+#write .md-toc-h4 a.md-toc-inner,
+#write .md-toc-h5 a.md-toc-inner,
+#write .md-toc-h6 a.md-toc-inner {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--v-gray-900);
+  position: relative;
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#write .md-toc-h3 a.md-toc-inner:hover,
+#write .md-toc-h4 a.md-toc-inner:hover,
+#write .md-toc-h5 a.md-toc-inner:hover,
+#write .md-toc-h6 a.md-toc-inner:hover {
+  background-color: var(--color-blue-light);
+  color: var(--color-blue-hover);
+}
+
+#write .md-toc a.md-toc-inner {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+#write .md-toc a.md-toc-inner::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-blue-hover);
+  left: 0;
+  bottom: -2px;
+  transition: width 0.3s ease;
+}
+
+#write .md-toc a.md-toc-inner:hover::after {
+  width: 100%;
+}
+
+#write .md-toc a.md-toc-inner.active {
+  background-color: var(--color-blue-medium);
+  color: var(--color-white);
+}
+
+#write .md-toc a.md-toc-inner.active::after {
+  background-color: var(--color-white);
+}
+
+/* ----------------------------------------------------------------------- Fill Empty Space with Dashed Lines ----------------------------------------------------------------------- */
+#write .md-toc-h1 a.md-toc-inner::before,
+#write .md-toc-h2 a.md-toc-inner::before,
+#write .md-toc-h3 a.md-toc-inner::before,
+#write .md-toc-h4 a.md-toc-inner::before,
+#write .md-toc-h5 a.md-toc-inner::before,
+#write .md-toc-h6 a.md-toc-inner::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  border-top: 1px dashed var(--v-gray-500);
+}
+
+/* =======================================================================  Code Block CSS =========================================================================== */
+.md-fences {
+  padding-top: 34px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color: var(--v-background);
+  border-radius: 7px;
+}
+
+.md-fences::before {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  content: "";
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 22px 0px #ffbd2e, 44px 0px #27c93f;
+}
+
+#write .CodeMirror {
+  font-family: "GeistMono", "LXGWWenKai";
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+  color: var(--v-gray-400);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.CodeMirror-gutters {
+  border-right: none;
+}
+
+#write .CodeMirror-cursors .CodeMirror-cursor {
+  border-left: 2px solid #528bff !important;
+}
+
+.md-fences .code-tooltip {
+  font-family: "GeistMono", "LXGWWenKai";
+  border-radius: 4px;
+  border: 1px solid var(--v-gray-500);
+  background-color: var(--v-white-200);
+}
+
+.code-tooltip .ty-input {
+  border: none;
+}
+
+.code-tooltip .ty-input:focus {
+  border: none;
+}
+
+#write .CodeMirror-activeline-background {
+  background: #2c313c;
+}
+
+#write .md-mathblock-panel .CodeMirror-activeline-background {
+  background: var(--v-gray-400);
+}
+
+.cm-s-inner .CodeMirror-selected {
+  border-radius: 2px;
+  background-color: #404859 !important;
+}
+
+.cm-s-inner .CodeMirror-selectedtext {
+  background-color: transparent !important;
+}
+
+.CodeMirror-cursor {
+  border-left: 1px solid #528bff !important;
+}
+
+.CodeMirror-linenumbers {
+  color: #394051 !important;
+}
+
+.cm-comment {
+  color: #5c6370 !important;
+}
+
+.cm-string {
+  color: #98c379 !important;
+}
+
+.cm-variable {
+  color: #e06c75 !important;
+}
+
+.cm-variable-2 {
+  color: #e5aa69 !important;
+}
+
+.cm-variable-3 {
+  color: #61afef !important;
+}
+
+.cm-number {
+  color: #d19a66 !important;
+}
+
+.cm-property {
+  color: #61afef !important;
+}
+
+.cm-atom {
+  color: #c678dd !important;
+}
+
+.cm-keyword {
+  color: #c678dd !important;
+}
+
+.cm-builtin {
+  color: #56b6c2 !important;
+}
+
+.cm-def {
+  color: #61afef !important;
+}
+
+.cm-operator {
+  color: #56b6c2 !important;
+}
+
+.cm-meta {
+  color: #abb2bf !important;
+}
+
+.cm-tag {
+  color: #e06c75 !important;
+}
+
+.cm-attribute {
+  color: #61afef !important;
+}
+
+.cm-regexp {
+  color: #98c379 !important;
+}
+
+.cm-link {
+  color: #61afef !important;
+}
+
+.cm-header {
+  color: #e06c63 !important;
+}
+
+/* =====================================================================  Preferences CSS ======================================================================= */
+.ty-preferences {
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #282c34;
+}
+
+.ty-preferences .window-header h2 {
+  font-size: 1.6rem;
+}
+
+.ty-preferences .sidebar {
+  font-size: 1.4rem;
+}
+
+.ty-preferences .sidebar .nav-group-item.active,
+.ty-preferences .sidebar .nav-group-item:active {
+  color: #efefef;
+  background-color: var(--color-blue-medium);
+}
+
+.html-for-mac #typora-sidebar {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+#md-notification {
+  background-color: #fff !important;
+}
+
+#md-notification #ty-surpress-mode-warning-close-btn:hover {
+  background-color: #bac6e9 !important;
+}
+
+#megamenu-menu-sidebar {
+  color: #282c34;
+  font-size: 1rem;
+}
+
+#megamenu-menu-sidebar #megamenu-menu-list {
+  border-top-color: #2F353A;
+  background-color: #2F353A;
+}
+
+#megamenu-menu-sidebar #megamenu-menu-list li a {
+  color: #e3dede !important;
+}
+
+#megamenu-menu-sidebar #megamenu-menu-list li a.active,
+#megamenu-menu-sidebar #megamenu-menu-list li a:hover {
+  background-color: var(--v-gray-900) !important;
+}
+
+#megamenu-menu-sidebar #megamenu-menu-list li a#m-saved {
+  background-color: transparent !important;
+}
+
+.megamenu-opened .megamenu-menu {
+  left: 0;
+}
+
+#megamenu-content {
+  color: var(--color-black);
+}
+
+#typora-sidebar .info-panel-tab-wrapper .info-panel-tab .info-panel-tab-border {
+  background-color: var(--color-blue-medium);
+  border-radius: 4px;
+}
+
+#typora-sidebar .sidebar-osx-tab .sidebar-tabs {
+  border-bottom-color: transparent;
+}
+
+#typora-sidebar #sidebar-content .file-list-item {
+  border-bottom: 1px solid var(--v-gray-400);
+}
+
+#typora-sidebar #sidebar-content .file-list-item.active {
+  background-color: var(--color-blue-light);
+  border-left: 4px solid var(--color-blue-medium);
+}
+
+#typora-sidebar #sidebar-content .ty-sidebar-search-panel {
+  border-bottom: 1px solid var(--v-gray-400);
+}
+
+#typora-sidebar #sidebar-content .ty-sidebar-search-panel .searchpanel-search-option-btn {
+  background-color: var(--color-white);
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content .file-tree-node:not(.file-node-root):hover>.file-node-background {
+  border-left: 4px solid var(--color-blue-medium);
+  background-color: var(--color-blue-light);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#typora-sidebar {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#typora-sidebar #sidebar-content {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content .file-tree-node.active>.file-node-background {
+  border-color: var(--color-blue-medium);
+  background-color: var(--color-blue-light);
+}
+
+#typora-sidebar #sidebar-content .sidebar-content-content #file-library-list-children .file-library-file-node:hover {
+  border-left: 4px solid var(--color-blue-medium);
+  background-color: var(--color-blue-light);
+}
+
+#typora-sidebar #sidebar-content #outline-content .no-collapse-outline .outline-item {
+  line-height: 1.375rem;
+  font-size: 1rem;
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-expander:before {
+  color: inherit;
+  font-size: 14px;
+  top: auto;
+  content: "\f0da";
+  font-family: FontAwesome;
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-expander:hover:before,
+#typora-sidebar #sidebar-content #outline-content .outline-item-open>.outline-item>.outline-expander:before {
+  content: "\f0d7";
+}
+
+#typora-sidebar #sidebar-content #outline-content .outline-item:hover {
+  background-color: var(--color-blue-medium) !important;
+}
+
+#typora-sidebar #ty-sidebar-footer {
+  border-top: 1px solid var(--v-gray-400);
+}
+
+#typora-sidebar #ty-sidebar-footer .sidebar-footer-item:hover {
+  background-color: var(--color-blue-light) !important;
+}
+
+#typora-sidebar #ty-sidebar-footer #sidebar-files-menu {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dropdown-menu>.show+.menuitem-group-label.show {
+  border-top: 1px solid var(--v-gray-400) !important;
+}
+
+.dropdown-menu li a {
+  color: var(--color-gray-900) !important;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--color-blue-light) !important;
+}
+
+.dropdown-menu .divider {
+  border-color: var(--color-white);
+}
+
+#sidebar-files-menu,
+#toc-dropmenu,
+.auto-suggest-container {
+  background-color: var(--color-white);
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  border: none;
+}
+
+#toc-dropmenu .outline-item:hover {
+  background-color: var(--color-blue-light) !important;
+}
+
+/* SOURCE MODE */
+#typora-source .CodeMirror-lines {
+  font-family: "GeistMono", "LXGWWenKaiMono";
+}
